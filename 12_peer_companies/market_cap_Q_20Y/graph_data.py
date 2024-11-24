@@ -4,16 +4,17 @@ import matplotlib.pyplot as plt
 import pandas as pd
 from pathlib import Path
 
-Y_AXIS = "Market cap"
+Y_AXIS = "Company Market Cap"
+Y_AXIS_LC = "market_cap"
 
 
 # Generate sample data
-root = Path("12_peer_companies") / "market_cap_Q_20Y" / "data"
+root = Path("12_peer_companies") / f"{Y_AXIS_LC}_Q_20Y" / "data"
 df = pd.DataFrame({"Date": pd.date_range(start='2004-10-01', periods=80, freq='QS-JAN')})
 
 for p in root.iterdir():
     df_p = pd.read_csv(p)
-    df[df_p["Instrument"][0]] = df_p["Company Market Cap"]
+    df[df_p["Instrument"][0]] = df_p[Y_AXIS]
 
 # Ensure the Date column is in datetime format
 df["Date"] = pd.to_datetime(df["Date"])
