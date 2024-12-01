@@ -1,0 +1,1 @@
+Set up the secrets and run the action pls :)
